@@ -19,7 +19,7 @@ class Talk(models.Model):
     speakers = models.ManyToManyField(Speaker)
 
     def safe_description(self):
-        '''http://stackoverflow.com/questions/2080559/disable-html-escaping-in-djangos-textfield''' 
+        '''https://stackoverflow.com/questions/2080559/disable-html-escaping-in-djangos-textfield'''
         return mark_safe(self.description)
 
     def comma_separated_speakers(self):
@@ -52,7 +52,10 @@ class Meetup(models.Model):
     date = models.DateTimeField()
     location = models.TextField(blank=True)    
     talks = models.ManyToManyField(Talk, blank=True)
-    meetup_type = models.ForeignKey(MeetupType)
+    meetup_type = models.ForeignKey(
+        MeetupType,
+        on_delete=models.PROTECT,
+    )
     posted_to_meetup = models.BooleanField(default=False)
     
     def safe_description(self):
