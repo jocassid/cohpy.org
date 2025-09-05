@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export DJANGO_SETTINGS_MODULE=config.settings.dev_lite
+
 VIRTUAL_ENV_PATH="../cohpy.org-venv"
 
 create_virtual_environment() {
@@ -20,6 +22,17 @@ install_requirements(){
   pip install -r requirements.txt
 }
 
+make_and_run_migrations(){
+  echo "* make & run migrations"
+  cohpy/manage.py makemigrations
+  cohpy/mnaage.py migrate
+}
+
+load_test_data(){
+  echo "* load testdata"
+  cohpy/manage.py loaddata cohpy/fixtures/testdata.json
+}
+
 if [[ "$PWD" != */cohpy.org ]]; then
   echo "You need to be in the cohpy.org directory to run this script" >&2
   exit 1
@@ -33,6 +46,8 @@ if [[ "$1" == "setup" ]]; then
 
   activate_virtual_environment
   install_requirements
+  make_and_run_migrations
+  load_test_data
   exit 0
 fi
 
