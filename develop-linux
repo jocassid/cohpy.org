@@ -25,7 +25,7 @@ install_requirements(){
 make_and_run_migrations(){
   echo "* make & run migrations"
   cohpy/manage.py makemigrations
-  cohpy/mnaage.py migrate
+  cohpy/manage.py migrate
 }
 
 load_test_data(){
