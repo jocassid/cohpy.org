@@ -33,6 +33,11 @@ load_test_data(){
   cohpy/manage.py loaddata cohpy/fixtures/testdata.json
 }
 
+create_superuser(){
+  echo "* create superuser"
+  cohpy/manage.py createsuperuser
+}
+
 if [[ "$PWD" != */cohpy.org ]]; then
   echo "You need to be in the cohpy.org directory to run this script" >&2
   exit 1
@@ -48,22 +53,27 @@ if [[ "$1" == "setup" ]]; then
   install_requirements
   make_and_run_migrations
   load_test_data
+  create_superuser
   exit 0
 fi
 
 
-if [ "$1" == "develop" ]; then
-  echo "develop"
+if [ "$1" == "shell" ]; then
+  echo "shell"
   activate_virtual_environment
-
+  cohpy/manage.py shell
 fi
 
 if [ "$1" == "run" ]; then
   echo "run"
+  activate_virtual_environment
+  cohpy/manage.py runserver
 fi
 
 if [ "$1" == "test" ]; then
   echo "test"
+  activate_virtual_environment
+  cohpy/manage.py shell
 fi
 
 
