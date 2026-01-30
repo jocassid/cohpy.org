@@ -38,6 +38,11 @@ create_superuser(){
   cohpy/manage.py createsuperuser
 }
 
+display_command_activate_venv(){
+  echo "$1"
+  activate_virtual_environment
+}
+
 if [[ "$PWD" != */cohpy.org ]]; then
   echo "You need to be in the cohpy.org directory to run this script" >&2
   exit 1
@@ -59,21 +64,24 @@ fi
 
 
 if [ "$1" == "shell" ]; then
-  echo "shell"
-  activate_virtual_environment
+  display_command_activate_venv "$1"
   cohpy/manage.py shell
 fi
 
 if [ "$1" == "run" ]; then
-  echo "run"
-  activate_virtual_environment
+  display_command_activate_venv "$1"
   cohpy/manage.py runserver
 fi
 
 if [ "$1" == "test" ]; then
-  echo "test"
-  activate_virtual_environment
+  display_command_activate_venv "$1"
   cohpy/manage.py shell
+fi
+
+if [ "$1" == "migrate" ]; then
+  display_command_activate_venv "$1"
+  cohpy/manage.py makemigrations
+  cohpy/manage.py migrate
 fi
 
 

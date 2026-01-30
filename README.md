@@ -30,6 +30,15 @@ database and provides a dev environment that better resembles production
 
 ### Setup method 1 - develop-linux script
 
+1. cd into the cohpy.org directory
+2. run the following command: `./develop-linux setup`  this script will:
+   * create a virtualenv
+   * activate the virtual environment
+   * install requirements
+   * make and run migrations
+   * load test data
+   * create superuser
+
 
 ### Setup method 2 - Manual Setup
 
@@ -104,6 +113,10 @@ $ py.test meetups --cov=meetups --cov-report=html
 This will produce an html report in the project directory.
 
 Open the report in a browser ```htmlcov/index.html```.
+
+### Develop Using develop-linux script
+
+
 
 ### Test data generation:
 
