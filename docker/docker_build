@@ -5,4 +5,4 @@ if ((EUID != 0)); then
   	exit 1
 fi
 
-docker build -t cohpy_org:django .
+docker build -t cohpy_org:django -f Dockerfile-django ..

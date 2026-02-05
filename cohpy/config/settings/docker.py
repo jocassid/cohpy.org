@@ -45,7 +45,7 @@ THIRD_PARTY_APPS = (
 )
 
 LOCAL_APPS = (
-    # 'cohpy.users', 
+    # 'cohpy.users',
     'meetups',
     'info_blocks',
     'python_resources',
