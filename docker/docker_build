@@ -5,4 +5,7 @@ if ((EUID != 0)); then
   	exit 1
 fi
 
-docker build -t cohpy_org:django -f Dockerfile-django ..
+echo "build of cohpy_org:django disabled"
+#docker build -t cohpy_org:django -f Dockerfile-django ..
+
+docker build -t cohpy_org:one_container -f Dockerfile-1container ..

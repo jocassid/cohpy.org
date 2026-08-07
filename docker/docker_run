@@ -5,7 +5,10 @@ if ((EUID != 0)); then
   	exit 1
 fi
 
-docker run \
-  -p 8000:8000 \
-  -v cohpy_django_log:/app/logs \
-  cohpy_org:django
+echo "run of cohpy_django disabled"
+#docker run \
+#  -p 8000:8000 \
+#  -v cohpy_django_log:/app/logs \
+#  cohpy_org:django
+
+docker run -p 80:80 cohpy_org:one_container
