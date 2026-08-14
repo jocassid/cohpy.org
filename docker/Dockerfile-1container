@@ -1,1 +1,6 @@
 FROM nginx:1.31.3-alpine-slim AS one_container
+
+LABEL author="jocassid"
+LABEL description="A single container that runs the cohpy.org website"
+
+RUN apk add python3

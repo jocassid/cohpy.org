@@ -1,6 +1,10 @@
 server {
     listen 80;
+    listen 443 ssl;
     server_name dev.cohpy.org cohpy.org www.cohpy.org;
+
+    ssl_certificate     /etc/nginx/ssl/nginx-selfsigned.crt;
+    ssl_certificate_key /etc/nginx/ssl/nginx-selfsigned.key;
 
     root /;
 
