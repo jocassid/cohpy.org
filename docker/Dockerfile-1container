@@ -3,4 +3,7 @@ FROM nginx:1.31.3-alpine-slim AS one_container
 LABEL author="jocassid"
 LABEL description="A single container that runs the cohpy.org website"
 
-RUN apk add python3
+# Automatically does the apk update and apk upgrade
+# --no-cache means that apk will NOT save the package index to the image
+# (helping to minimize container size)
+RUN apk add --no-cache --upgrade python3
