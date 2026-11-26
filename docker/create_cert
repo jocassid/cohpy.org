@@ -1,0 +1,11 @@
+#!/bin/bash
+
+openssl req \
+  -x509 \
+  -nodes \
+  -newkey rsa:2048 \
+  -days 365 \
+  -keyout docker/ssl/localhost.key \
+  -out docker/ssl/localhost.crt \
+  -subj '/CN=localhost' \
+  -addext 'subjectAltName=DNS:localhost'

@@ -7,3 +7,18 @@ LABEL description="A single container that runs the cohpy.org website"
 # --no-cache means that apk will NOT save the package index to the image
 # (helping to minimize container size)
 RUN apk add --no-cache --upgrade python3
+
+COPY cohpy/ /cohpy
+COPY docker/index.html /usr/share/nginx/html/index.html
+
+WORKDIR /
+
+RUN python3 -m venv /cohpy-venv; \
+    source /cohpy-venv/bin/activate; \
+    pip install -r /cohpy/requirements.txt
+
+
+# pip install -r /cohpy/requirements.txt
+
+
+
